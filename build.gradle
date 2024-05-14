@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.jaewon'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Servlet, JSTL
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'javax.servlet:jstl:1.2'
+
+    // MySQL JDBC Driver
+    implementation 'mysql:mysql-connector-java:8.0.28'
+
+    // Lombok API
+    implementation 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
+
+test {
+    useJUnitPlatform()
+}
