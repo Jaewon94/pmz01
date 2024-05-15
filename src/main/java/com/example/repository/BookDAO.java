@@ -2,10 +2,7 @@ package com.example.repository;
 
 import com.example.entity.BookDTO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +58,7 @@ public class BookDAO {
 
             while (rs.next()){
 
-                int num=rs.getInt("num");
+                Long num=rs.getLong("num");
 
                 String title=rs.getString("title");
 
@@ -85,6 +82,14 @@ public class BookDAO {
 
             e.printStackTrace();
 
+        } finally {
+            try {
+                rs.close();
+                ps.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return list;
