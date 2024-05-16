@@ -72,18 +72,18 @@
 
             switch (e.target.classList[2]) {
                 case "btn-primary":
-                    form.action="/MF01/list";
+                    form.action="/MF01/list.do";
                     if(inputNum) {
                         inputNum.remove();
                     }
                     form.method="get";
                     break;
                 case "btn-success":
-                    form.action="/MF01/updateGet";
+                    form.action="/MF01/updateGet.do";
                     form.method="post";
                     break;
                 case "btn-warning":
-                    form.action="/MF01/delete";
+                    form.action="/MF01/delete.do";
                     form.method="post";
                     break;
             }

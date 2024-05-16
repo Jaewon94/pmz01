@@ -27,7 +27,7 @@
         <div class="card-header">Book Update</div>
 
         <div class="card-body">
-            <form action="/MF01/updatePost" method="post">
+            <form action="/MF01/updatePost.do" method="post">
                 <input type="hidden" name="num" id="num" value="${book.num}">
                 <div class="form-group">
                     <label for="title">제목:</label>
@@ -48,7 +48,7 @@
 
                 <button type="submit" class="btn btn-primary btn-sm">수정</button>
                 <button type="reset" class="btn btn-danger btn-sm">취소</button>
-                <button type="button" class="btn btn-info btn-sm" onclick="location.href='/MF01/list'">목록</button>
+                <button type="button" class="btn btn-info btn-sm" onclick="location.href='/MF01/list.do'">목록</button>
 
 
             </form>

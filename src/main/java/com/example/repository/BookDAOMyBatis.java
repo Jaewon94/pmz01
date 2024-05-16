@@ -1,21 +1,17 @@
 package com.example.repository;
 
 import com.example.entity.BookDTO;
-import org.apache.ibatis.io.Resources;
+import com.example.entity.CustomerDTO;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java.awt.print.Book;
-import java.io.InputStream;
 import java.util.List;
 
-public class BookDAOMybatis {
+public class BookDAOMyBatis {
 
 
     public List<BookDTO> bookList() {
         try(SqlSession session = MyBatisUtil.openSession()) {
-            return session.selectList("com.example.repository.BookDAO.bookList");
+            return session.selectList("bookList");
 
         }
     }

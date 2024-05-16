@@ -17,11 +17,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function goDel(num) {
-            location.href="/MF01/delete?num="+num;
+            location.href="/MF01/delete.do?num="+num;
         }
 
         function goRegister(){
-            location.href="/MF01/registerGet"
+            location.href="/MF01/registerGet.do"
         }
     </script>
 </head>
@@ -29,11 +29,28 @@
 <body>
 <div class="container">
 
-    <h2>Web Database Programming</h2>
+    <h2>WEB MVC Framework Basic</h2>
 
     <div class="card">
 
-        <div class="card-header">Book List</div>
+        <div class="card-header" style="display: flex; justify-content: center;">
+
+            <c:if test="${empty cus}">
+                <form class="form-inline" action="/MF01/login.do" method="post">
+                        <label for="customer_id">아이디:</label>
+                        <input type="text" class="form-control" placeholder="Enter customer_id" id="customer_id" name="customer_id">
+                        <label for="password">패스워드:</label>
+                        <input type="password" class="form-control" placeholder="Enter password" id="password" name="password">
+                    <button type="submit" class="btn btn-primary btn-sm">로그인</button>
+                </form>
+            </c:if>
+            <c:if test="${!empty cus}">
+                <form lass="form-inline" action="/MF01/logout.do" method="post">
+                    <label>${cus.customer_name}님!!. [적립금]: ${cus.reserves}원</label>
+                    <button type="submit" class="btn btn-primary btn-sm">로그아웃</button>
+                </form>
+            </c:if>
+        </div>
 
         <div class="card-body">
             <table class="table table-bordered table-hover">
@@ -51,16 +68,25 @@
                     <c:forEach var="book" items="${list}">
                         <tr>
                             <td>${book.num}</td>
-                            <td><a href="/MF01/view?num=${book.num}"> ${book.title}</a></td>
+                            <td><a href="/MF01/view.do?num=${book.num}"> ${book.title}</a></td>
                             <td>${book.price}</td>
                             <td>${book.author}</td>
                             <td>${book.page}</td>
-                            <td><button class="btn btn-sm btn-warning" onclick="goDel(${book.num})">삭제</button></td>
+                            <td>
+                                <c:if test="${!empty cus}">
+                                <button class="btn btn-sm btn-warning" onclick="goDel(${book.num})">삭제</button>
+                                </c:if>
+                                <c:if test="${empty cus}">
+                                    <button disabled class="btn btn-sm btn-warning" onclick="goDel(${book.num})">삭제</button>
+                                </c:if>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-            <button class="btn btn-sm btn-primary" onclick="goRegister()">등록하기</button>
+            <c:if test="${!empty cus}">
+                <button class="btn btn-sm btn-primary" onclick="goRegister()">등록하기</button>
+            </c:if>
         </div>
 
         <div class="card-footer">인프런_마프 1탄_박매일</div>
